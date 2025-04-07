@@ -1,0 +1,16 @@
+[Unit]
+Description=Maqala Translator
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/path/to/MaqalaTranslator
+Environment="PATH=/path/to/MaqalaTranslator/venv/bin"
+EnvironmentFile=/path/to/MaqalaTranslator/.env.production
+ExecStart=/path/to/MaqalaTranslator/venv/bin/gunicorn run:app -b 0.0.0.0:8000 --workers 4
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target 
